@@ -17,6 +17,57 @@ router.get(
 );
 
 router.get(
+  "/search/:searchItem",
+  asyncHandler(async (req, res) => {
+    const { searchItem } = req.params;
+
+    const isPrice = !isNaN(Number(searchItem));
+
+    const q = {
+      $or: [
+        { item_name: { $regex: searchItem, $options: "i" } },
+        { description: { $regex: searchItem, $options: "i" } },
+        { ingredients: { $regex: searchItem, $options: "i" } },
+      ],
+    };
+
+    if (isPrice) {
+      q.$or.push({ price: Number(searchItem) });
+    }
+
+    const items = await Item.find(q).populate("category_id", "name");
+
+    if (!items || items.length === 0) {
+      return res.status(400).json({ message: "no item found" });
+    }
+
+    res.status(200).json(items);
+  })
+);
+
+router.get(
+  "/filter",
+  asyncHandler(async (req, res) => {
+    const { minPrice, maxPrice, itemName } = req.query;
+    const filter = {};
+    if (minPrice) {
+      filter.price = { $gte: Number(minPrice) }; 
+    }
+    if (maxPrice) {
+      filter.price = { ...filter.price, $lte: Number(maxPrice) };
+    }
+    if (itemName) {
+      filter.item_name = { $regex: itemName, $options: "i" };
+    }
+    const items = await Item.find(filter); 
+    if (!items || items.length === 0) {
+      return res.status(400).json({ message: "no item exist" });
+    }
+    res.status(200).json(items);
+  })
+);
+
+router.get(
   "/:id",
   asyncHandler(async (req, res) => {
     const item = await Item.findById(req.params.id);
@@ -26,6 +77,8 @@ router.get(
     res.status(200).json(item);
   })
 );
+
+
 
 router.post(
   "/",
@@ -91,5 +144,9 @@ router.put(
     );
     res.status(200).json(update);
   })
+
+
+
+
 );
 export default router;
