@@ -3,7 +3,7 @@ import facebookIcon from '../assets/facebook.png'
 import twitterIcon from '../assets/twitter.png'
 import instagramIcon from '../assets/instagram.png'
 import whatsappIcon from '../assets/whatsapp.png'
-import colors from './colors';
+import colors from '../constant/colors';
 
 export default function Footer() {
 

@@ -1,4 +1,4 @@
-  import colors from "./colors";
+  import colors from "../constant/colors";
 
   const MenuItem = ({ icon, title, price }) => (
     <div

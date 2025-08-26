@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import logo from '../assets/YumLogo.png'
-import colors from "./colors";
+import colors from "../constant/colors";
 
 const navLinkStyle = {
     color: colors.darkColor,

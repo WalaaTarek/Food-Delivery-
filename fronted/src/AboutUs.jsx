@@ -1,4 +1,4 @@
-import colors from "./components/colors";
+import colors from "./constant/colors";
 import pasta from './assets/pastaImg.jpg'
 import sandwich from './assets/sandwich.jpg'
 import foodPhoto from './assets/foodPhoto.jpeg'

@@ -9,7 +9,7 @@ import fastIcon from './assets/fastOrderIcon.png'
 import qualityIcon from './assets/qualityIcon.png'
 import imgOfPage from './assets/imgOfPage.png'
 import { Swiper, SwiperSlide } from "swiper/react";
-import colors from './components/colors'
+import colors from './constant/colors';
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
