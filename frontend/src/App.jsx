@@ -3,15 +3,17 @@ import Home from "./Home";
 import AboutUs from "./AboutUs";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
+import Menu from "./components/Menu";
 
 function App() {
   return (
-    <Router >
+    <Router>
       <Routes>
-        <Route path="/" element={<Signup />} />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/register" element={<Signup />} />
         <Route path="/about" element={<AboutUs />} />
+        <Route path="/menu" element={<Menu />} />
       </Routes>
     </Router>
   );

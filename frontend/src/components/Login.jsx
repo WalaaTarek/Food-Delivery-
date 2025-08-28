@@ -148,7 +148,7 @@ const Login = () => {
           <p className="mt-3 text-center">
             Don’t have an account?{" "}
             <span
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/register")}
               className="text-decoration-none fw-semibold"
               style={{ cursor: "pointer", color: colors.primaryColor }}
             >

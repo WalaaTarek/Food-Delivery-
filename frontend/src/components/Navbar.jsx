@@ -69,6 +69,7 @@ export default function Navbar() {
                 e.currentTarget.style.color = colors.darkColor;
                 e.currentTarget.style.transform = "scale(1)";
               }}
+              onClick={() => navigate("/menu")}
             >
               Menu
             </a>
