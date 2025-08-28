@@ -9,5 +9,6 @@ const categorySchema = new mongoose.Schema({
   description: {
     type: String,
   },
+  image: { type: String },
 });
 export default mongoose.model("Category", categorySchema);
