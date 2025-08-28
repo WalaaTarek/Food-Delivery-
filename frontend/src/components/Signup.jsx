@@ -4,7 +4,7 @@ import colors from "../constant/colors";
 import chefImage from "../assets/chefImage.png";
 
 const Signup = () => {
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -47,12 +47,13 @@ const Signup = () => {
       }
 
       localStorage.setItem("user", JSON.stringify(data.user));
-      alert("🎉 Account created successfully!");
-      //navigate("/login");
+      localStorage.setItem("token", data.token);
+      alert(" Account created successfully!");
+      navigate("/home");
     } catch (err) {
       console.error(err);
       setError("Something went wrong. Please try again.");
-    }finally {
+    } finally {
       setIsLoading(false);
     }
   };
