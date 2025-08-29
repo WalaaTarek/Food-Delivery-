@@ -4,6 +4,7 @@ import twitterIcon from '../assets/twitter.png'
 import instagramIcon from '../assets/instagram.png'
 import whatsappIcon from '../assets/whatsapp.png'
 import colors from '../constant/colors';
+import { Link } from "react-router-dom";
 
 export default function Footer() {
 
@@ -25,7 +26,21 @@ export default function Footer() {
 
                 <div style={{ padding: '15px' }}>
                     <h6 style={{ fontWeight: 'bold', marginBottom: '15px' }}>Company</h6>
-                    <p style={{ cursor: 'pointer', margin: '5px 0' }}>About Us</p>
+                    <Link
+                        className="nav-link"
+                        to="/aboutUs"
+                    // onMouseEnter={(e) => {
+                    //     e.currentTarget.style.color = colors.primaryColor;
+                    //      e.currentTarget.style.transform = 'scale(1.05) translateY(-3px)';
+                    //     e.currentTarget.style.transition = 'all 0.3s ease'; 
+                    // }}
+                    // onMouseLeave={(e) => {
+                    //     e.currentTarget.style.color = "";
+                    //     e.currentTarget.style.transform = "scale(1)";
+                    // }}
+                    >
+                        About Us
+                    </Link>
                     <p style={{ cursor: 'pointer', margin: '5px 0' }}>Careers</p>
                     <p style={{ cursor: 'pointer', margin: '5px 0' }}>Press</p>
                 </div>

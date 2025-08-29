@@ -77,7 +77,7 @@ export default function Navbar() {
           <li className="nav-item">
             <Link
               className="nav-link"
-              to="/about"
+              to="/aboutUs"
               style={navLinkStyle}
               onMouseEnter={(e) => {
                 e.currentTarget.style.color = colors.primaryColor;
@@ -109,9 +109,9 @@ export default function Navbar() {
             </a>
           </li>
           <li className="nav-item">
-            <a
+            <Link
               className="nav-link"
-              href="#"
+              to="/contactUs"
               style={navLinkStyle}
               onMouseEnter={(e) => {
                 e.currentTarget.style.color = colors.primaryColor;
@@ -123,7 +123,7 @@ export default function Navbar() {
               }}
             >
               Contact
-            </a>
+            </Link>
           </li>
         </ul>
         {!user && (

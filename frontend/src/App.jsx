@@ -4,6 +4,7 @@ import AboutUs from "./AboutUs";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Menu from "./components/Menu";
+import ContactUs from "./ContactUs";
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Signup />} />
-        <Route path="/about" element={<AboutUs />} />
+        <Route path="/aboutUs" element={<AboutUs />} />
+        <Route path="/contactUs" element={<ContactUs/>}/>
         <Route path="/menu" element={<Menu />} />
       </Routes>
     </Router>
