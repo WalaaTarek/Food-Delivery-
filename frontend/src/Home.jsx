@@ -3,7 +3,7 @@ import facebookIcon from "./assets/facebook.png";
 import twitterIcon from "./assets/twitter.png";
 import instagramIcon from "./assets/instagram.png";
 import whatsappIcon from "./assets/whatsapp.png";
-import cheifImage from "./assets/chefImage.png";
+import chefImage from "./assets/chefImage.png";
 import orderIcon from "./assets/orderIcon.png";
 import fastIcon from "./assets/fastOrderIcon.png";
 import qualityIcon from "./assets/qualityIcon.png";
@@ -308,7 +308,7 @@ function Home() {
         <div className="row row-cols-md-2 align-items-center">
           <div className="d-flex justify-content-center">
             <img
-              src={cheifImage}
+              src={chefImage}
               alt="Chef"
               style={{
                 width: "100%",
