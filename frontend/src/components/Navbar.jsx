@@ -59,7 +59,7 @@ export default function Navbar() {
           <li className="nav-item">
             <a
               className="nav-link"
-              href="#"
+              // href="#"
               style={navLinkStyle}
               onMouseEnter={(e) => {
                 e.currentTarget.style.color = colors.primaryColor;
