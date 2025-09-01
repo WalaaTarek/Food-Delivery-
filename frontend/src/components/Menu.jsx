@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import colors from "../constant/colors";
+import { Link } from "react-router-dom";
 
 export default function Menu() {
   const [item, setItem] = useState([]);
@@ -110,7 +111,7 @@ export default function Menu() {
             </div>
           </>
         ) : (
-          <div> no item f </div>
+          <div> no item found </div>
         )}
       </div>
       {item.length > 0 ? (
@@ -123,47 +124,54 @@ export default function Menu() {
           }}
         >
           {item.map((e) => (
-            <div
+            <Link
               key={e._id}
-              style={{
-                textAlign: "center",
-                border: "1px solid white",
-                borderRadius: "15px",
-                padding: "10px",
-                width: "450px",
-                height: "400px",
-                backgroundColor: "white",
-              }}
+              to="/singleitemview"
+              state={{ id: e._id, item: e }}
+              style={{ textDecoration: "none" }}
             >
-              <h3
+              <div
+                key={e._id}
                 style={{
-                  textAlign: "left",
-                  color: "white",
-                  marginTop: "5px",
-                  width: 70,
-                  height: 35,
-                  backgroundColor: colors.secondaryColor,
-                  display: "flex",
-                  justifyContent: "center",
-                  borderRadius: "5px",
-                  alignItems: "center",
+                  textAlign: "center",
+                  border: "1px solid white",
+                  borderRadius: "15px",
+                  padding: "10px",
+                  width: "450px",
+                  height: "400px",
+                  backgroundColor: "white",
                 }}
               >
-                {e.price + "$"}
-              </h3>
+                <h3
+                  style={{
+                    textAlign: "left",
+                    color: "white",
+                    marginTop: "5px",
+                    width: 70,
+                    height: 35,
+                    backgroundColor: colors.secondaryColor,
+                    display: "flex",
+                    justifyContent: "center",
+                    borderRadius: "5px",
+                    alignItems: "center",
+                  }}
+                >
+                  {e.price + "$"}
+                </h3>
 
-              <img
-                src={e.images[0]}
-                style={{
-                  width: 250,
-                  height: 250,
-                  borderRadius: "5%",
-                }}
-              />
-              <h3 style={{ color: colors.secondaryColor, marginTop: 20 }}>
-                {e.item_name}
-              </h3>
-            </div>
+                <img
+                  src={e.images[0]}
+                  style={{
+                    width: 250,
+                    height: 250,
+                    borderRadius: "5%",
+                  }}
+                />
+                <h3 style={{ color: colors.secondaryColor, marginTop: 20 }}>
+                  {e.item_name}
+                </h3>
+              </div>
+            </Link>
           ))}
         </div>
       ) : (
