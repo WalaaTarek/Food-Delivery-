@@ -6,6 +6,7 @@ import Login from "./components/Login";
 import Menu from "./components/Menu";
 import ContactUs from "./ContactUs";
 import SingleItemView from "./components/SingleItemView";
+import Category from "./components/Category";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/contactUs" element={<ContactUs />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/singleitemview" element={<SingleItemView />} />
+        <Route path="/category" element={<Category />} />
       </Routes>
     </Router>
   );
