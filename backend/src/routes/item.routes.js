@@ -51,7 +51,7 @@ router.get(
     const { minPrice, maxPrice, itemName } = req.query;
     const filter = {};
     if (minPrice) {
-      filter.price = { $gte: Number(minPrice) }; 
+      filter.price = { $gte: Number(minPrice) };
     }
     if (maxPrice) {
       filter.price = { ...filter.price, $lte: Number(maxPrice) };
@@ -59,7 +59,7 @@ router.get(
     if (itemName) {
       filter.item_name = { $regex: itemName, $options: "i" };
     }
-    const items = await Item.find(filter); 
+    const items = await Item.find(filter);
     if (!items || items.length === 0) {
       return res.status(400).json({ message: "no item exist" });
     }
@@ -77,8 +77,6 @@ router.get(
     res.status(200).json(item);
   })
 );
-
-
 
 router.post(
   "/",
@@ -144,9 +142,52 @@ router.put(
     );
     res.status(200).json(update);
   })
-
-
-
-
 );
+
+router.post(
+  "/search/:searchItem",
+  asyncHandler(async (req, res) => {
+    const searchItem = req.params.searchItem;
+    const result = await Item.aggregate([
+      {
+        $search: {
+          index: "food_item",
+          compound: {
+            should: [
+              {
+                autocomplete: {
+                  query: searchItem,
+                  path: "item_name",
+                  fuzzy: { maxEdits: 2 },
+                },
+                text: {
+                  query: searchItem,
+                  path: "description",
+                  fuzzy: { maxEdits: 2 },
+                },
+                text: {
+                  query: searchItem,
+                  path: "ingredients",
+                  fuzzy: { maxEdits: 2 },
+                },
+              },
+            ],
+          },
+        },
+      },
+      { $limit: 10 },
+    ]);
+    res.status(200).json(result);
+  })
+);
+
+router.post(
+  "/filter/:price",
+  asyncHandler(async (req, res) => {
+    const price = req.params.price;
+    const result = await Item.find({ price: { $lte: price } });
+    res.status(200).json(result);
+  })
+);
+
 export default router;
