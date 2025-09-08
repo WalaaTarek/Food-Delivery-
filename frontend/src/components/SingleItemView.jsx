@@ -2,17 +2,19 @@ import { useLocation, useNavigate } from "react-router-dom";
 import QuantityInput from "./QuantityInput";
 import { useEffect, useState } from "react";
 import colors from '../constant/colors'
+import ReviewSection, { AverageRating } from "./ReviewSection";
 
 export default function SingleItemView() {
     const location = useLocation();
     const navigate = useNavigate();
     const { item } = location.state || {};
     const [relatedItems, setRelatedItems] = useState([]);
+    const [reviews, setReviews] = useState([]);
+    const user = localStorage.getItem("user");
 
     const getItem = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/category/getItem/${item.category_id}`
-            );
+            const response = await fetch(`http://localhost:5000/api/category/getItem/${item.category_id}`);
             const data = await response.json();
             if (data) {
                 const filtered = data.filter((i) => i._id !== item._id).slice(0, 3);
@@ -28,6 +30,15 @@ export default function SingleItemView() {
             getItem();
         }
     }, [item]);
+
+    const handleOrder = () => {
+        if (!user) {
+            alert("Please login first to order.");
+            navigate("/login");
+            return;
+        }
+        // continue order flow
+    };
 
     if (!item) {
         return (
@@ -107,6 +118,9 @@ export default function SingleItemView() {
                     </p>
 
                     <section className="mt-4">
+                        <div className="text-center mb-3">
+                            <AverageRating reviews={reviews} />
+                        </div>
                         <p className="fw-semibold"
                             style={{
                                 fontSize: "1.1rem",
@@ -146,6 +160,8 @@ export default function SingleItemView() {
 
                         <button
                             className="btn btn-lg rounded-pill"
+                            onClick={handleOrder}
+
                             style={{
                                 marginTop: 20,
                                 fontFamily: "'Poppins', sans-serif",
@@ -168,6 +184,8 @@ export default function SingleItemView() {
                     </section>
                 </div>
             </div>
+
+            <ReviewSection item_id={item._id} reviews={reviews} setReviews={setReviews} />
 
             <h3 className="h4 mt-5 mb-3 text-center fw-bold"
                 style={{
